@@ -12,7 +12,7 @@
 *Creat time:
 *Modify:
 *  
-code is modified test 2.1
+code is modified test 2.2..in edit file
 *********************************************************************/
 #define _MAIN_C
 
