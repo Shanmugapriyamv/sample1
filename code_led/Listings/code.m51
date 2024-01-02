@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    12/27/2023  12:22:53  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    01/02/2024  12:12:03  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
@@ -31,14 +31,14 @@ LINK MAP OF MODULE:  .\Objects\code (?C_STARTUP)
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     003CH     UNIT         ?PR?MAIN?CODE
-            CODE    083CH     002DH     UNIT         ?PR?ENP44P45GPIO?CODE
-            CODE    0869H     002DH     UNIT         ?PR?ENP47GPIO?CODE
-            CODE    0896H     001EH     UNIT         ?PR?_DELAYXMS?CODE
-            CODE    08B4H     0019H     UNIT         ?PR?INITPORT?CODE
-            CODE    08CDH     000EH     UNIT         ?PR?_DELAYXUS?CODE
-            CODE    08DBH     000CH     UNIT         ?C_C51STARTUP
-            CODE    08E7H     0003H     UNIT         ?PR?INITSYSTEM?CODE
+            CODE    0800H     003EH     UNIT         ?PR?MAIN?CODE
+            CODE    083EH     002DH     UNIT         ?PR?ENP44P45GPIO?CODE
+            CODE    086BH     002DH     UNIT         ?PR?ENP47GPIO?CODE
+            CODE    0898H     001EH     UNIT         ?PR?_DELAYXMS?CODE
+            CODE    08B6H     0019H     UNIT         ?PR?INITPORT?CODE
+            CODE    08CFH     000EH     UNIT         ?PR?_DELAYXUS?CODE
+            CODE    08DDH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08E9H     0003H     UNIT         ?PR?INITSYSTEM?CODE
 
 
 
@@ -59,7 +59,7 @@ SEGMENT                           BIT_GROUP
 ?PR?INITSYSTEM?CODE            -----    -----
   +--> ?PR?INITPORT?CODE
 
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/27/2023  12:22:53  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/02/2024  12:12:03  PAGE 2
 
 
 ?PR?_DELAYXMS?CODE             -----    -----
@@ -75,7 +75,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:08DBH         SEGMENT       ?C_C51STARTUP
+  C:08DDH         SEGMENT       ?C_C51STARTUP
   I:0021H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
@@ -85,7 +85,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:08DEH         SYMBOL        IDATALOOP
+  C:08E0H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -94,18 +94,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:08DBH         SYMBOL        STARTUP1
+  C:08DDH         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:08DBH         LINE#         133
-  C:08DDH         LINE#         134
-  C:08DEH         LINE#         135
-  C:08DFH         LINE#         136
-  C:08E1H         LINE#         185
-  C:08E4H         LINE#         196
+  C:08DDH         LINE#         133
+  C:08DFH         LINE#         134
+  C:08E0H         LINE#         135
+  C:08E1H         LINE#         136
+  C:08E3H         LINE#         185
+  C:08E6H         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        CODE
@@ -119,22 +119,22 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   D:0092H         PUBLIC        P4M1
   D:00E8H         PUBLIC        P4
   D:00E1H         PUBLIC        WDTCR
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/27/2023  12:22:53  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/02/2024  12:12:03  PAGE 3
 
 
   D:00ACH         PUBLIC        SFRPI
   B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP0L
-  C:08E7H         PUBLIC        InitSystem
-  C:0869H         PUBLIC        EnP47GPIO
+  C:08E9H         PUBLIC        InitSystem
+  C:086BH         PUBLIC        EnP47GPIO
   D:00D8H         PUBLIC        CCON
   C:0800H         PUBLIC        main
   D:00E6H         PUBLIC        SCMD
-  C:0896H         PUBLIC        _DelayXms
+  C:0898H         PUBLIC        _DelayXms
   D:00E3H         PUBLIC        IFADRH
   D:00E5H         PUBLIC        IFMT
-  C:08D4H         PUBLIC        _DelayXus
+  C:08D6H         PUBLIC        _DelayXus
   D:00E4H         PUBLIC        IFADRL
   B:00B0H.2       PUBLIC        P32
   D:0088H         PUBLIC        TCON
@@ -142,9 +142,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   B:00E8H.4       PUBLIC        P44
   B:00E8H.5       PUBLIC        P45
   B:00E8H.6       PUBLIC        P46
-  C:08B4H         PUBLIC        InitPort
+  C:08B6H         PUBLIC        InitPort
   D:00E2H         PUBLIC        IFD
-  C:083CH         PUBLIC        EnP44P45GPIO
+  C:083EH         PUBLIC        EnP44P45GPIO
   D:0098H         PUBLIC        S0CON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
@@ -152,115 +152,116 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
   -------         ENDPROC       L?0015
   -------         PROC          _DELAYXUS
   D:0007H         SYMBOL        xUs
-  C:08D4H         LINE#         62
-  C:08D4H         LINE#         63
-  C:08D4H         LINE#         64
-  C:08D7H         LINE#         65
-  C:08D7H         LINE#         104
-  C:08D8H         LINE#         105
-  C:08DAH         LINE#         106
+  C:08D6H         LINE#         64
+  C:08D6H         LINE#         65
+  C:08D6H         LINE#         66
+  C:08D9H         LINE#         67
+  C:08D9H         LINE#         106
+  C:08DAH         LINE#         107
+  C:08DCH         LINE#         108
   -------         ENDPROC       _DELAYXUS
   -------         PROC          _DELAYXMS
   D:0004H         SYMBOL        xMs
-  C:0896H         LINE#         114
-  C:089AH         LINE#         115
-  C:089AH         LINE#         116
-  C:089EH         LINE#         117
-  C:089EH         LINE#         118
-  C:08A1H         LINE#         119
-  C:08A1H         LINE#         120
-  C:08A4H         LINE#         121
-  C:08A4H         LINE#         122
-  C:08A7H         LINE#         123
-  C:08ACH         LINE#         124
-  C:08B1H         LINE#         126
-  C:08B3H         LINE#         127
+  C:0898H         LINE#         116
+  C:089CH         LINE#         117
+  C:089CH         LINE#         118
+  C:08A0H         LINE#         119
+  C:08A0H         LINE#         120
+  C:08A3H         LINE#         121
+  C:08A3H         LINE#         122
+  C:08A6H         LINE#         123
+  C:08A6H         LINE#         124
+  C:08A9H         LINE#         125
+  C:08AEH         LINE#         126
+  C:08B3H         LINE#         128
+  C:08B5H         LINE#         129
   -------         ENDPROC       _DELAYXMS
   -------         PROC          ENP44P45GPIO
   -------         DO            
   D:0007H         SYMBOL        x
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/27/2023  12:22:53  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/02/2024  12:12:03  PAGE 4
 
 
   B:0020H.1       SYMBOL        bEA
   -------         ENDDO         
-  C:083CH         LINE#         136
-  C:083CH         LINE#         137
-  C:083CH         LINE#         139
-  C:0840H         LINE#         140
-  C:0843H         LINE#         141
-  C:0846H         LINE#         142
-  C:0849H         LINE#         143
-  C:084CH         LINE#         144
-  C:084FH         LINE#         145
-  C:0852H         LINE#         146
-  C:0853H         LINE#         147
-  C:0855H         LINE#         148
-  C:0858H         LINE#         149
-  C:085AH         LINE#         150
-  C:085DH         LINE#         151
-  C:0860H         LINE#         152
-  C:0863H         LINE#         153
-  C:0864H         LINE#         154
-  C:0866H         LINE#         155
+  C:083EH         LINE#         138
+  C:083EH         LINE#         139
+  C:083EH         LINE#         141
+  C:0842H         LINE#         142
+  C:0845H         LINE#         143
+  C:0848H         LINE#         144
+  C:084BH         LINE#         145
+  C:084EH         LINE#         146
+  C:0851H         LINE#         147
+  C:0854H         LINE#         148
+  C:0855H         LINE#         149
+  C:0857H         LINE#         150
+  C:085AH         LINE#         151
+  C:085CH         LINE#         152
+  C:085FH         LINE#         153
+  C:0862H         LINE#         154
+  C:0865H         LINE#         155
+  C:0866H         LINE#         156
   C:0868H         LINE#         157
+  C:086AH         LINE#         159
   -------         ENDPROC       ENP44P45GPIO
   -------         PROC          ENP47GPIO
   -------         DO            
   D:0007H         SYMBOL        x
   B:0020H.0       SYMBOL        bEA
   -------         ENDDO         
-  C:0869H         LINE#         165
-  C:0869H         LINE#         166
-  C:0869H         LINE#         168
-  C:086DH         LINE#         169
-  C:0870H         LINE#         170
-  C:0873H         LINE#         171
-  C:0876H         LINE#         172
-  C:0879H         LINE#         173
-  C:087CH         LINE#         174
-  C:087FH         LINE#         175
-  C:0880H         LINE#         176
-  C:0882H         LINE#         177
-  C:0885H         LINE#         178
-  C:0887H         LINE#         179
-  C:088AH         LINE#         180
-  C:088DH         LINE#         181
-  C:0890H         LINE#         182
-  C:0891H         LINE#         183
-  C:0893H         LINE#         184
+  C:086BH         LINE#         167
+  C:086BH         LINE#         168
+  C:086BH         LINE#         170
+  C:086FH         LINE#         171
+  C:0872H         LINE#         172
+  C:0875H         LINE#         173
+  C:0878H         LINE#         174
+  C:087BH         LINE#         175
+  C:087EH         LINE#         176
+  C:0881H         LINE#         177
+  C:0882H         LINE#         178
+  C:0884H         LINE#         179
+  C:0887H         LINE#         180
+  C:0889H         LINE#         181
+  C:088CH         LINE#         182
+  C:088FH         LINE#         183
+  C:0892H         LINE#         184
+  C:0893H         LINE#         185
   C:0895H         LINE#         186
+  C:0897H         LINE#         188
   -------         ENDPROC       ENP47GPIO
   -------         PROC          INITPORT
-  C:08B4H         LINE#         195
-  C:08B4H         LINE#         196
-  C:08B4H         LINE#         205
-  C:08BAH         LINE#         206
-  C:08C0H         LINE#         207
-  C:08CCH         LINE#         209
+  C:08B6H         LINE#         197
+  C:08B6H         LINE#         198
+  C:08B6H         LINE#         207
+  C:08BCH         LINE#         208
+  C:08C2H         LINE#         209
+  C:08CEH         LINE#         211
   -------         ENDPROC       INITPORT
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/27/2023  12:22:53  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/02/2024  12:12:03  PAGE 5
 
 
   -------         PROC          INITSYSTEM
-  C:08E7H         LINE#         217
-  C:08E7H         LINE#         218
-  C:08E7H         LINE#         219
+  C:08E9H         LINE#         219
+  C:08E9H         LINE#         220
+  C:08E9H         LINE#         221
   -------         ENDPROC       INITSYSTEM
   -------         PROC          MAIN
-  C:0800H         LINE#         223
-  C:0800H         LINE#         224
   C:0800H         LINE#         225
-  C:0803H         LINE#         227
-  C:0809H         LINE#         228
-  C:0810H         LINE#         229
-  C:0816H         LINE#         234
-  C:081BH         LINE#         235
-  C:081EH         LINE#         237
-  C:0826H         LINE#         238
-  C:0826H         LINE#         239
-  C:0826H         LINE#         253
-  C:083AH         LINE#         255
+  C:0800H         LINE#         226
+  C:0800H         LINE#         227
+  C:0803H         LINE#         229
+  C:0809H         LINE#         230
+  C:0810H         LINE#         231
+  C:0816H         LINE#         236
+  C:081BH         LINE#         237
+  C:081EH         LINE#         239
+  C:0826H         LINE#         240
+  C:0826H         LINE#         241
+  C:0826H         LINE#         255
+  C:083AH         LINE#         257
+  C:083CH         LINE#         258
   -------         ENDPROC       MAIN
   -------         ENDMOD        CODE
 
@@ -268,8 +269,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\code (?C_STARTUP)
     SEGMENT: ?PR?ENP47GPIO?CODE
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00EDH BYTE (11%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00EFH BYTE (11%) *
 ******************************************************************************
 
-Program Size: data=9.2 xdata=0 code=237
+Program Size: data=9.2 xdata=0 code=239
 LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
