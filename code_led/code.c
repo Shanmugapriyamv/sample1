@@ -254,7 +254,9 @@ void main()
 
 P45=1;P44=1;DelayXms(2000);P45=0;P44=0;DelayXms(2000);
 //P11=0;  // TO CHECK		
-				P33=0; // ..............
+				P33=0; // .............. made changes now  3/1
+			
+			
     }
 }
 
