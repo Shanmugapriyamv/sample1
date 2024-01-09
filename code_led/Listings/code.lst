@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   CODE                                                              01/03/2024 09:58:01 PAGE 1   
+C51 COMPILER V9.60.7.0   CODE                                                              01/09/2024 14:22:34 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE CODE
@@ -62,7 +62,7 @@ line level    source
   51          #define TIMER_12T_1ms_TL  ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(12000000)))) %256)
   52          
   53          #define LED_R   P32
-C51 COMPILER V9.60.7.0   CODE                                                              01/03/2024 09:58:01 PAGE 2   
+C51 COMPILER V9.60.7.0   CODE                                                              01/09/2024 14:22:34 PAGE 2   
 
   54          #define LED_G_0   P33
   55          #define LED_G_1   P46
@@ -126,7 +126,7 @@ line level    source
  113          *Input:     u16 xMs -> *1ms  (1~65535)
  114          *Output:     
  115          *************************************************/
-C51 COMPILER V9.60.7.0   CODE                                                              01/03/2024 09:58:01 PAGE 3   
+C51 COMPILER V9.60.7.0   CODE                                                              01/09/2024 14:22:34 PAGE 3   
 
  116          void DelayXms(u16 xMs)
  117          {
@@ -190,7 +190,7 @@ line level    source
  175   1        SCMD=0x46;
  176   1        SCMD=0xB9;
  177   1        _nop_();
-C51 COMPILER V9.60.7.0   CODE                                                              01/03/2024 09:58:01 PAGE 4   
+C51 COMPILER V9.60.7.0   CODE                                                              01/09/2024 14:22:34 PAGE 4   
 
  178   1        x=IFD;
  179   1        x=x&(~RSTIO_P);
@@ -254,7 +254,7 @@ line level    source
  237   1        EnP44P45GPIO();
  238   1      //  EnP47GPIO();
  239   1          P44=0;P33=0;P46=0;  P45=0;
-C51 COMPILER V9.60.7.0   CODE                                                              01/03/2024 09:58:01 PAGE 5   
+C51 COMPILER V9.60.7.0   CODE                                                              01/09/2024 14:22:34 PAGE 5   
 
  240   1          while(1)
  241   1          {
@@ -274,7 +274,7 @@ line level    source
  255   2      P45=1;P44=1;DelayXms(2000);P45=0;P44=0;DelayXms(2000);
  256   2      //P11=0;  // TO CHECK   
  257   2              P33=0; // .............. made changes now  3/1
- 258   2            
+ 258   2            //Newly updated 
  259   2            
  260   2          }
  261   1      }
