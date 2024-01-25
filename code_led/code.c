@@ -16,6 +16,7 @@ code is modified test 2.2..in edit file
 next modification done ..
 modified on 25/01..
 stage 2 on 25/01
+27
 
 *********************************************************************/
 #define _MAIN_C
