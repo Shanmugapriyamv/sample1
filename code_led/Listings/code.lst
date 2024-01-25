@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 10:38:44 PAGE 1   
+C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 16:45:53 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE CODE
@@ -26,85 +26,87 @@ line level    source
   15          code is modified test 2.2..in edit file
   16          next modification done ..
   17          modified on 25/01..
-  18          *********************************************************************/
-  19          #define _MAIN_C
-  20          
-  21          #include <Intrins.h>
-  22          #include <Absacc.h>
-  23          
-  24          #include <Stdio.h>  // for printf
+  18          stage 2 on 25/01
+  19          
+  20          *********************************************************************/
+  21          #define _MAIN_C
+  22          
+  23          #include <Intrins.h>
+  24          #include <Absacc.h>
   25          
-  26          #include "REG_MG82F6B08_001_104.H"
-  27          #include "Type.h"
-  28          #include "API_Macro_MG82F6B08_001_104.H"
-  29          #include "API_Uart_BRGRL_MG82F6B08_001_104.H"
-  30          
-  31          
-  32          /*************************************************
-  33          *Set SysClk (MAX.24MHz)
-  34          *Selection: 
-  35          * 8000000,16000000
-  36          * 11059200,22118400
-  37          *************************************************/
-  38          #define MCU_SYSCLK    8000000
-  39          /*************************************************/
-  40          /*************************************************
-  41          *Set CpuClk (MAX.16MHz)
-  42          * 1) CpuCLK=SysCLK
-  43          * 2) CpuClk=SysClk/2
-  44          *************************************************/
-  45          #define MCU_CPUCLK    (MCU_SYSCLK)
-  46          //#define MCU_CPUCLK    (MCU_SYSCLK/2)
-  47          
-  48          #define TIMER_1T_1ms_TH ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(1000000)))) /256)      
-  49          #define TIMER_1T_1ms_TL ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(1000000)))) %256)
-  50          
-  51          #define TIMER_12T_1ms_TH  ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(12000000)))) /256)       
-  52          #define TIMER_12T_1ms_TL  ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(12000000)))) %256)
-  53          
-C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 10:38:44 PAGE 2   
+  26          #include <Stdio.h>  // for printf
+  27          
+  28          #include "REG_MG82F6B08_001_104.H"
+  29          #include "Type.h"
+  30          #include "API_Macro_MG82F6B08_001_104.H"
+  31          #include "API_Uart_BRGRL_MG82F6B08_001_104.H"
+  32          
+  33          
+  34          /*************************************************
+  35          *Set SysClk (MAX.24MHz)
+  36          *Selection: 
+  37          * 8000000,16000000
+  38          * 11059200,22118400
+  39          *************************************************/
+  40          #define MCU_SYSCLK    8000000
+  41          /*************************************************/
+  42          /*************************************************
+  43          *Set CpuClk (MAX.16MHz)
+  44          * 1) CpuCLK=SysCLK
+  45          * 2) CpuClk=SysClk/2
+  46          *************************************************/
+  47          #define MCU_CPUCLK    (MCU_SYSCLK)
+  48          //#define MCU_CPUCLK    (MCU_SYSCLK/2)
+  49          
+  50          #define TIMER_1T_1ms_TH ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(1000000)))) /256)      
+  51          #define TIMER_1T_1ms_TL ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(1000000)))) %256)
+  52          
+  53          #define TIMER_12T_1ms_TH  ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(12000000)))) /256)       
+C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 16:45:53 PAGE 2   
 
-  54          #define LED_R   P32
-  55          #define LED_G_0   P33
-  56          #define LED_G_1   P46
-  57          
-  58          
-  59          /*************************************************
-  60          *Function:     void DelayXus(u8 xUs)
-  61          *Description:  delay,unit:us
-  62          *Input:     u8 Us -> *1us  (1~255)
-  63          *Output:     
-  64          *************************************************/
-  65          void DelayXus(u8 xUs)
-  66          {
-  67   1        while(xUs!=0)
-  68   1        {
-  69   2      #if (MCU_CPUCLK>=11059200)
+  54          #define TIMER_12T_1ms_TL  ((65536-(u16)(float)(1000*((float)(MCU_SYSCLK)/(float)(12000000)))) %256)
+  55          
+  56          #define LED_R   P32
+  57          #define LED_G_0   P33
+  58          #define LED_G_1   P46
+  59          
+  60          
+  61          /*************************************************
+  62          *Function:     void DelayXus(u8 xUs)
+  63          *Description:  delay,unit:us
+  64          *Input:     u8 Us -> *1us  (1~255)
+  65          *Output:     
+  66          *************************************************/
+  67          void DelayXus(u8 xUs)
+  68          {
+  69   1        while(xUs!=0)
+  70   1        {
+  71   2      #if (MCU_CPUCLK>=11059200)
                   _nop_();
               #endif
-  72   2      #if (MCU_CPUCLK>=14745600)
-                  _nop_();
-                  _nop_();
-                  _nop_();
-                  _nop_();
-              #endif
-  78   2      #if (MCU_CPUCLK>=16000000)
-                  _nop_();
-              #endif
-  81   2      
-  82   2      #if (MCU_CPUCLK>=22118400)
-                  _nop_();
-                  _nop_();
+  74   2      #if (MCU_CPUCLK>=14745600)
                   _nop_();
                   _nop_();
                   _nop_();
                   _nop_();
               #endif
-  90   2      #if (MCU_CPUCLK>=24000000)
+  80   2      #if (MCU_CPUCLK>=16000000)
+                  _nop_();
+              #endif
+  83   2      
+  84   2      #if (MCU_CPUCLK>=22118400)
+                  _nop_();
+                  _nop_();
+                  _nop_();
+                  _nop_();
+                  _nop_();
+                  _nop_();
+              #endif
+  92   2      #if (MCU_CPUCLK>=24000000)
                   _nop_();
                   _nop_();
               #endif    
-  94   2      #if (MCU_CPUCLK>=29491200)
+  96   2      #if (MCU_CPUCLK>=29491200)
                   _nop_();
                   _nop_();
                   _nop_();
@@ -112,174 +114,174 @@ line level    source
                   _nop_();
                   _nop_();
               #endif
- 102   2      #if (MCU_CPUCLK>=32000000)
+ 104   2      #if (MCU_CPUCLK>=32000000)
                   _nop_();
                   _nop_();
               #endif
- 106   2      
- 107   2          xUs--;
- 108   2        }
- 109   1      }
- 110          
- 111          /*************************************************
- 112          *Function:     void DelayXms(u16 xMs)
- 113          *Description:delay,unit:ms
- 114          *Input:     u16 xMs -> *1ms  (1~65535)
- 115          *Output:     
-C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 10:38:44 PAGE 3   
+ 108   2      
+ 109   2          xUs--;
+ 110   2        }
+ 111   1      }
+ 112          
+ 113          /*************************************************
+ 114          *Function:     void DelayXms(u16 xMs)
+ 115          *Description:delay,unit:ms
+C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 16:45:53 PAGE 3   
 
- 116          *************************************************/
- 117          void DelayXms(u16 xMs)
- 118          {
- 119   1        while(xMs!=0)
- 120   1        {
- 121   2          CLRWDT();
- 122   2          DelayXus(200);
- 123   2          DelayXus(200);
+ 116          *Input:     u16 xMs -> *1ms  (1~65535)
+ 117          *Output:     
+ 118          *************************************************/
+ 119          void DelayXms(u16 xMs)
+ 120          {
+ 121   1        while(xMs!=0)
+ 122   1        {
+ 123   2          CLRWDT();
  124   2          DelayXus(200);
  125   2          DelayXus(200);
  126   2          DelayXus(200);
- 127   2          xMs--;
- 128   2          
- 129   2        }
- 130   1      }
- 131          
- 132          /***********************************************************************************
- 133          *Function:   void EnP44P45GPIO(void)
- 134          *Description:   set P44/P45 to GPIO, Disable OCD function
- 135          *   Note: after this setting,P44/P45 will not be available for OCD-ICE, 
- 136          *Input:   
- 137          *Output:     
- 138          *************************************************************************************/
- 139          void EnP44P45GPIO(void)
- 140          {
- 141   1        u8 x;
- 142   1        bit bEA=EA;
- 143   1        ISPCR=0x80;
- 144   1        IFADRH=0x00;
- 145   1        IFADRL=DCON0_P;
- 146   1        IFMT=ISP_READ_P;
- 147   1        SCMD=0x46;
- 148   1        SCMD=0xB9;
- 149   1        _nop_();
- 150   1        x=IFD;
- 151   1        x=x&(~OCDE_P);
- 152   1        IFD=x;
- 153   1        IFMT=ISP_WRITE_P;
- 154   1        SCMD=0x46;
- 155   1        SCMD=0xB9;
- 156   1        _nop_();
- 157   1        ISPCR=0x00;
- 158   1        IFMT=ISP_STANBY;
- 159   1        
- 160   1      }
- 161          
- 162          /***********************************************************************************
- 163          *Function:   void EnP47GPIO(void)
- 164          *Description:   set P47 to GPIO, Disable RESET function
- 165          *Input:   
- 166          *Output:     
- 167          *************************************************************************************/
- 168          void EnP47GPIO(void)
- 169          {
- 170   1        u8 x;
- 171   1        bit bEA=EA;
- 172   1        ISPCR=0x80;
- 173   1        IFADRH=0x00;
- 174   1        IFADRL=DCON0_P;
- 175   1        IFMT=ISP_READ_P;
- 176   1        SCMD=0x46;
- 177   1        SCMD=0xB9;
-C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 10:38:44 PAGE 4   
+ 127   2          DelayXus(200);
+ 128   2          DelayXus(200);
+ 129   2          xMs--;
+ 130   2          
+ 131   2        }
+ 132   1      }
+ 133          
+ 134          /***********************************************************************************
+ 135          *Function:   void EnP44P45GPIO(void)
+ 136          *Description:   set P44/P45 to GPIO, Disable OCD function
+ 137          *   Note: after this setting,P44/P45 will not be available for OCD-ICE, 
+ 138          *Input:   
+ 139          *Output:     
+ 140          *************************************************************************************/
+ 141          void EnP44P45GPIO(void)
+ 142          {
+ 143   1        u8 x;
+ 144   1        bit bEA=EA;
+ 145   1        ISPCR=0x80;
+ 146   1        IFADRH=0x00;
+ 147   1        IFADRL=DCON0_P;
+ 148   1        IFMT=ISP_READ_P;
+ 149   1        SCMD=0x46;
+ 150   1        SCMD=0xB9;
+ 151   1        _nop_();
+ 152   1        x=IFD;
+ 153   1        x=x&(~OCDE_P);
+ 154   1        IFD=x;
+ 155   1        IFMT=ISP_WRITE_P;
+ 156   1        SCMD=0x46;
+ 157   1        SCMD=0xB9;
+ 158   1        _nop_();
+ 159   1        ISPCR=0x00;
+ 160   1        IFMT=ISP_STANBY;
+ 161   1        
+ 162   1      }
+ 163          
+ 164          /***********************************************************************************
+ 165          *Function:   void EnP47GPIO(void)
+ 166          *Description:   set P47 to GPIO, Disable RESET function
+ 167          *Input:   
+ 168          *Output:     
+ 169          *************************************************************************************/
+ 170          void EnP47GPIO(void)
+ 171          {
+ 172   1        u8 x;
+ 173   1        bit bEA=EA;
+ 174   1        ISPCR=0x80;
+ 175   1        IFADRH=0x00;
+ 176   1        IFADRL=DCON0_P;
+ 177   1        IFMT=ISP_READ_P;
+C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 16:45:53 PAGE 4   
 
- 178   1        _nop_();
- 179   1        x=IFD;
- 180   1        x=x&(~RSTIO_P);
- 181   1        IFD=x;
- 182   1        IFMT=ISP_WRITE_P;
- 183   1        SCMD=0x46;
- 184   1        SCMD=0xB9;
- 185   1        _nop_();
- 186   1        ISPCR=0x00;
- 187   1        IFMT=ISP_STANBY;
- 188   1        
- 189   1      }
- 190          
- 191          
- 192          /***********************************************************************************
- 193          *Function:   void InitPort(void)
- 194          *Description:   Initialize IO Port
- 195          *Input:   
- 196          *Output:     
- 197          *************************************************************************************/
- 198          void InitPort(void)
- 199          {
- 200   1      //  PORT_SetP3QuasiBi(BIT0|BIT1|BIT2|BIT3);   // Set P30,P31,P32,P33 as Quasi-Bidirectional,for RXD/TXD,LED
- 201   1      //  PORT_SetP4OpenDrainPu(BIT6);        // Set P46 as Open-Drain with pull-up resistor,for LED
- 202   1      
- 203   1      //  PORT_SetP4OpenDrainPu(BIT4|BIT5|BIT7);    // Set P44,P45,P47 as Open-Drain with pull-up resistor
- 204   1        
- 205   1        
+ 178   1        SCMD=0x46;
+ 179   1        SCMD=0xB9;
+ 180   1        _nop_();
+ 181   1        x=IFD;
+ 182   1        x=x&(~RSTIO_P);
+ 183   1        IFD=x;
+ 184   1        IFMT=ISP_WRITE_P;
+ 185   1        SCMD=0x46;
+ 186   1        SCMD=0xB9;
+ 187   1        _nop_();
+ 188   1        ISPCR=0x00;
+ 189   1        IFMT=ISP_STANBY;
+ 190   1        
+ 191   1      }
+ 192          
+ 193          
+ 194          /***********************************************************************************
+ 195          *Function:   void InitPort(void)
+ 196          *Description:   Initialize IO Port
+ 197          *Input:   
+ 198          *Output:     
+ 199          *************************************************************************************/
+ 200          void InitPort(void)
+ 201          {
+ 202   1      //  PORT_SetP3QuasiBi(BIT0|BIT1|BIT2|BIT3);   // Set P30,P31,P32,P33 as Quasi-Bidirectional,for RXD/TXD,LED
+ 203   1      //  PORT_SetP4OpenDrainPu(BIT6);        // Set P46 as Open-Drain with pull-up resistor,for LED
+ 204   1      
+ 205   1      //  PORT_SetP4OpenDrainPu(BIT4|BIT5|BIT7);    // Set P44,P45,P47 as Open-Drain with pull-up resistor
  206   1        
  207   1        
- 208   1        PORT_SetP3QuasiBi(BIT0|BIT1);
- 209   1        PORT_SetP3PushPull(BIT3);
- 210   1        PORT_SetP4PushPull(BIT4|BIT5|BIT6);
- 211   1        
- 212   1      }
- 213          
- 214          /***********************************************************************************
- 215          *Function:   void InitSystem(void)
- 216          *Description:   Initialize MCU
- 217          *Input:   
- 218          *Output:     
- 219          *************************************************************************************/
- 220          void InitSystem(void)
- 221          {
- 222   1        InitPort();
- 223   1      
- 224   1      }
- 225          
- 226          void main()
- 227          {
- 228   1          InitSystem();
- 229   1      //  
- 230   1        LED_G_0=0;LED_G_1=0;LED_R=0;
- 231   1        DelayXms(2000);
- 232   1        LED_G_0=1;LED_G_1=1;LED_R=1;
- 233   1      
- 234   1        // Delay 2s before set P44,P45,P47 as GPIO
- 235   1        // the SWD and reset pin are still valid for two seconds after power-on, 
- 236   1        // and the OCD-ICE program can be updated during this time
- 237   1        DelayXms(2000);
- 238   1        EnP44P45GPIO();
- 239   1      //  EnP47GPIO();
-C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 10:38:44 PAGE 5   
+ 208   1        
+ 209   1        
+ 210   1        PORT_SetP3QuasiBi(BIT0|BIT1);
+ 211   1        PORT_SetP3PushPull(BIT3);
+ 212   1        PORT_SetP4PushPull(BIT4|BIT5|BIT6);
+ 213   1        
+ 214   1      }
+ 215          
+ 216          /***********************************************************************************
+ 217          *Function:   void InitSystem(void)
+ 218          *Description:   Initialize MCU
+ 219          *Input:   
+ 220          *Output:     
+ 221          *************************************************************************************/
+ 222          void InitSystem(void)
+ 223          {
+ 224   1        InitPort();
+ 225   1      
+ 226   1      }
+ 227          
+ 228          void main()
+ 229          {
+ 230   1          InitSystem();
+ 231   1      //  
+ 232   1        LED_G_0=0;LED_G_1=0;LED_R=0;
+ 233   1        DelayXms(2000);
+ 234   1        LED_G_0=1;LED_G_1=1;LED_R=1;
+ 235   1      
+ 236   1        // Delay 2s before set P44,P45,P47 as GPIO
+ 237   1        // the SWD and reset pin are still valid for two seconds after power-on, 
+ 238   1        // and the OCD-ICE program can be updated during this time
+ 239   1        DelayXms(2000);
+C51 COMPILER V9.60.7.0   CODE                                                              01/25/2024 16:45:53 PAGE 5   
 
- 240   1          P44=0;P33=0;P46=0;  P45=0;
- 241   1          while(1)
- 242   1          {
- 243   2      //       if(P44==1)
- 244   2      //       {
- 245   2      //      P33=1;
- 246   2      //      DelayXms(2000);
- 247   2      //      P33=0;
- 248   2      //      P46=1;
- 249   2      //      DelayXms(2000);
- 250   2      //      P46=0;
- 251   2      //      P45=1;
- 252   2      //      DelayXms(2000);
- 253   2      //      P45=0;
- 254   2      //       }
- 255   2      
- 256   2      P45=1;P44=1;DelayXms(2000);P45=0;P44=0;DelayXms(2000);
- 257   2      //P11=0;  // TO CHECK   
- 258   2              P33=0; // .............. made changes now  3/1
- 259   2            //Newly updated 
- 260   2            
- 261   2          }
- 262   1      }
- 263          
+ 240   1        EnP44P45GPIO();
+ 241   1      //  EnP47GPIO();
+ 242   1          P44=0;P33=0;P46=0;  P45=0;
+ 243   1          while(1)
+ 244   1          {
+ 245   2      //       if(P44==1)
+ 246   2      //       {
+ 247   2      //      P33=1;
+ 248   2      //      DelayXms(2000);
+ 249   2      //      P33=0;
+ 250   2      //      P46=1;
+ 251   2      //      DelayXms(2000);
+ 252   2      //      P46=0;
+ 253   2      //      P45=1;
+ 254   2      //      DelayXms(2000);
+ 255   2      //      P45=0;
+ 256   2      //       }
+ 257   2      
+ 258   2      P45=1;P44=1;DelayXms(2000);P45=0;P44=0;DelayXms(2000);
+ 259   2      //P11=0;  // TO CHECK   
+ 260   2              P33=0; // .............. made changes now  3/1
+ 261   2            //Newly updated 
+ 262   2            
+ 263   2          }
+ 264   1      }
+ 265          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
